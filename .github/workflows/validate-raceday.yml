@@ -1,0 +1,23 @@
+name: Validate RaceDay Part 1
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate docs folder
+        run: |
+          test -d docs
+          test -f "docs/ERD Diagram.png"
+          test -f "docs/RaceDay_API_Endpoint_Plan_Section_B_Corrected.docx"
+          test -f "docs/RaceDay_Part1_Section_C_SQL_Final.sql"
+
+      - name: Validation successful
+        run: echo "RaceDay Part 1 documentation structure is valid."
